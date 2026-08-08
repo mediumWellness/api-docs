@@ -7,9 +7,15 @@ description: "Preços da Venice API por 1M de tokens para modelos de texto, imag
 
 Preços por 1M de tokens salvo indicação. Todos os preços em USD. 1 Diem = $1/dia de computação.
 
-<Info>
-**Planos de API vs. consumidor.** A Venice API é cobrada em modelo **pay-per-use** em créditos USD (ou via DIEM em staking). Ela é separada dos planos de assinatura mensal do app web para consumidores da Venice (Free, Pro, Max), cujas cotas — como contagem de imagens ou chat ilimitado — se aplicam apenas aos apps web/desktop/mobile, **não** ao uso da API. Todas as chamadas de API são medidas contra o saldo de créditos da sua API, independentemente do seu plano de consumidor. Veja [Usuários Pro](#usuários-pro) abaixo para o crédito único que os assinantes Pro recebem.
-</Info>
+## Como funciona a cobrança da API
+
+A Venice API é **pay-as-you-go**: toda requisição é medida e cobrada do saldo de créditos Venice da sua conta (financiado em USD ou via DIEM em staking). Não há camada gratuita, cota mensal de API nem plano de assinatura baseado em login para a API — o acesso é autenticado por uma chave de API e cobrado por requisição.
+
+<Note>
+Os planos Free, Pro e Max do app para consumidores [venice.ai](https://venice.ai) (chat web, desktop e mobile) são separados da API. Os limites das assinaturas para consumidores — como contagem de imagens, cotas de caracteres ou chat ilimitado — se aplicam apenas a esses apps, **não** ao uso da API. As chamadas de API são sempre medidas contra o saldo de créditos Venice, independentemente do seu plano de consumidor. Veja [Usuários Pro](#usuários-pro) abaixo para o crédito único que os assinantes Pro recebem.
+</Note>
+
+Para usar a API você precisa de uma [chave de API](/guides/getting-started/generating-api-key) e de um saldo utilizável, financiado através de uma das [opções de pagamento](#opções-de-pagamento) abaixo. Todo modelo listado nesta página está disponível para qualquer chave de API com saldo suficiente — não há uma separação entre modelos "base" e "Pro" na API.
 
 ## Modelos de texto
 
@@ -33,7 +39,7 @@ Preços por 1M de tokens salvo indicação. Todos os preços em USD. 1 Diem = $1
 | Claude Sonnet 4.6 (Beta) | `claude-sonnet-4-6` | $3.60 | $18.00 | $0.36 | $4.50 | 1000K | Anonimizado |
 | Claude Sonnet 5 (Beta) | `claude-sonnet-5` | $3.00 | $15.00 | $0.30 | $3.75 | 1000K | Anonimizado |
 | DeepSeek V3.2 | `deepseek-v3.2` | $0.33 | $0.48 | $0.16 | - | 160K | Privado |
-| DeepSeek V4 Flash | `deepseek-v4-flash` | $0.14 | $0.28 | $0.03 | - | 1000K | Anonimizado |
+| DeepSeek V4 Flash 0731 | `deepseek-v4-flash-0731` | $0.17 | $0.35 | $0.04 | - | 1000K | Privado |
 | DeepSeek V4 Flash (Beta) | `e2ee-deepseek-v4-flash` | $0.18 | $0.37 | $0.04 | - | 1000K | E2EE · Privado |
 | DeepSeek V4 Pro | `deepseek-v4-pro` | $1.65 | $3.30 | $0.33 | - | 1000K | Anonimizado |
 | Gemini 3 Flash Preview | `gemini-3-flash-preview` | $0.70 | $3.75 | $0.07 | - | 256K | Anonimizado |
@@ -49,7 +55,7 @@ Preços por 1M de tokens salvo indicação. Todos os preços em USD. 1 Diem = $1
 | GLM 4.6 | `zai-org-glm-4.6` | $0.43 | $1.75 | $0.08 | - | 198K | Privado |
 | GLM 4.7 | `zai-org-glm-4.7` | $0.55 | $2.65 | $0.11 | - | 198K | Privado |
 | GLM 4.7 (Beta) | `e2ee-glm-4-7-p` | $1.10 | $4.15 | - | - | 128K | E2EE · Privado |
-| GLM 4.7 Flash | `zai-org-glm-4.7-flash` | $0.13 | $0.50 | - | - | 128K | Privado |
+| GLM 4.7 Flash | `zai-org-glm-4.7-flash` | $0.06 | $0.40 | $0.01 | - | 128K | Privado |
 | GLM 4.7 Flash Heretic | `olafangensan-glm-4.7-flash-heretic` | $0.07 | $0.40 | $0.04 | - | 200K | Privado |
 | GLM 5 | `zai-org-glm-5` | $1.00 | $3.20 | $0.20 | - | 198K | Privado |
 | GLM 5 Turbo | `z-ai-glm-5-turbo` | $1.20 | $4.00 | $0.24 | - | 200K | Anonimizado |
@@ -92,11 +98,12 @@ Preços por 1M de tokens salvo indicação. Todos os preços em USD. 1 Diem = $1
 | Grok Build 0.1 (Beta) | `grok-build-0-1` | $1.00 | $2.00 | $0.20 | - | 256K | Privado |
 | ↳ Contexto >200K | | $2.00 | $4.00 | $0.40 | - | | |
 | Hermes 3 Llama 3.1 405b | `hermes-3-llama-3.1-405b` | $1.10 | $3.00 | - | - | 128K | Privado |
-| Inkling (Beta) | `inkling` | $1.25 | $5.06 | $0.21 | - | 1000K | Privado |
+| Inkling (Beta) | `inkling` | $1.25 | $5.06 | $0.21 | - | 524K | Privado |
 | Kimi K2.5 | `kimi-k2-5` | $0.56 | $3.50 | $0.22 | - | 256K | Privado |
 | Kimi K2.6 | `kimi-k2-6` | $0.75 | $3.50 | $0.16 | - | 256K | Privado |
 | Kimi K2.7 Code (Beta) | `kimi-k2-7-code` | $0.75 | $3.50 | $0.16 | - | 256K | Privado |
 | Kimi K3 (Beta) | `kimi-k3` | $3.75 | $18.75 | $0.38 | - | 1000K | Privado |
+| Kimi K3 Fast (Beta) | `kimi-k3-fast-api` | $4.50 | $22.50 | $0.45 | - | 1000K | Privado |
 | Llama 3.2 3B | `llama-3.2-3b` | $0.15 | $0.60 | - | - | 128K | Privado |
 | Llama 3.3 70B | `llama-3.3-70b` | $0.70 | $2.80 | - | - | 128K | Privado |
 | Mercury 2 (Beta) | `mercury-2` | $0.31 | $0.94 | $0.03 | - | 128K | Anonimizado |
@@ -106,7 +113,6 @@ Preços por 1M de tokens salvo indicação. Todos os preços em USD. 1 Diem = $1
 | MiniMax M3 Preview (Beta) | `minimax-m3-preview` | $0.30 | $1.20 | $0.06 | - | 524K | Privado |
 | Mistral Small 3.2 24B Instruct | `mistral-small-3-2-24b-instruct` | $0.09 | $0.25 | - | - | 256K | Privado |
 | Mistral Small 4 (Beta) | `mistral-small-2603` | $0.19 | $0.75 | - | - | 256K | Privado |
-| Nemotron Cascade 2 30B A3B (Beta) | `nvidia-nemotron-cascade-2-30b-a3b` | $0.14 | $0.80 | - | - | 256K | Privado |
 | NVIDIA Nemotron 3 Nano 30B (Beta) | `nvidia-nemotron-3-nano-30b-a3b` | $0.07 | $0.30 | - | - | 128K | Privado |
 | NVIDIA Nemotron 3 Ultra | `nvidia-nemotron-3-ultra-550b-a55b` | $0.63 | $3.13 | $0.19 | - | 256K | Privado |
 | OpenAI GPT OSS 120B | `openai-gpt-oss-120b` | $0.07 | $0.30 | - | - | 128K | Privado |
@@ -120,13 +126,14 @@ Preços por 1M de tokens salvo indicação. Todos os preços em USD. 1 Diem = $1
 | Qwen 3.5 9B | `qwen3-5-9b` | $0.10 | $0.15 | - | - | 256K | Privado |
 | Qwen 3.6 27B | `qwen3-6-27b` | $0.33 | $3.25 | - | - | 256K | Privado |
 | Qwen 3.6 27B FP8 (Beta) | `e2ee-qwen3-6-27b` | $0.35 | $3.46 | $0.17 | - | 256K | E2EE · Privado |
-| Qwen 3.6 35B A3B (Beta) | `qwen3-6-35b-a3b` | $0.15 | $1.00 | $0.05 | - | 256K | Privado |
+| Qwen 3.6 35B A3B (Beta) | `qwen3-6-35b-a3b` | $0.10 | $1.00 | - | - | 256K | Privado |
 | Qwen 3.6 35B A3B FP8 (Beta) | `e2ee-qwen3-6-35b-a3b` | $0.18 | $1.18 | $0.06 | - | 32K | E2EE · Privado |
 | Qwen 3.6 Plus Uncensored (Beta) | `qwen-3-6-plus` | $0.63 | $3.75 | $0.06 | $0.78 | 1000K | Anonimizado |
 | ↳ Contexto >256K | | $2.50 | $7.50 | $0.06 | $0.78 | | |
 | Qwen 3.7 Max (Beta) | `qwen-3-7-max` | $2.70 | $8.05 | $0.27 | $3.35 | 1000K | Anonimizado |
 | Qwen 3.7 Plus (Beta) | `qwen-3-7-plus` | $0.50 | $2.00 | $0.05 | $0.63 | 1000K | Anonimizado |
 | ↳ Contexto >256K | | $1.50 | $6.00 | $0.15 | $1.88 | | |
+| Qwen 3.8 Max (Beta) | `qwen-3-8-max` | $2.50 | $7.50 | $0.31 | $3.13 | 1000K | Anonimizado |
 | Qwen3 30B A3B (Beta) | `e2ee-qwen3-30b-a3b-p` | $0.19 | $0.69 | - | - | 256K | E2EE · Privado |
 | Qwen3 VL 235B | `qwen3-vl-235b-a22b` | $0.21 | $1.90 | $0.10 | - | 128K | Privado |
 | Qwen3 VL 30B A3B (Beta) | `e2ee-qwen3-vl-30b-a3b-p` | $0.25 | $0.90 | - | - | 128K | E2EE · Privado |
@@ -315,14 +322,19 @@ O preço de vídeo varia por resolução e duração. Visite a [página de model
 
 | Modelo | ID | Tipo | Preço | Privacidade |
 |---|---|---|---|---|
+| Flux 3 | `flux-3-text-to-video` | Text to Video | Variável | Anonimizado |
+| Flux 3 | `flux-3-image-to-video` | Image to Video | Variável | Anonimizado |
+| Flux 3 First Last Frame | `flux-3-first-last-frame-to-video` | Text to Video | Variável | Anonimizado |
 | Gemini Omni Flash | `gemini-omni-flash-text-to-video` | Text to Video | Variável | Anonimizado |
 | Gemini Omni Flash | `gemini-omni-flash-image-to-video` | Image to Video | Variável | Anonimizado |
 | Gemini Omni Flash R2V | `gemini-omni-flash-reference-to-video` | Text to Video | Variável | Anonimizado |
-| Grok Imagine 1.5 Private | `grok-imagine-1-5-image-to-video-private` | Image to Video | Variável | Privado |
-| Grok Imagine Private | `grok-imagine-text-to-video-private` | Text to Video | Variável | Privado |
-| Grok Imagine Private | `grok-imagine-image-to-video-private` | Image to Video | Variável | Privado |
-| Grok Imagine Private | `grok-imagine-video-to-video-private` | Text to Video | Variável | Privado |
-| Grok Imagine R2V Private | `grok-imagine-reference-to-video-private` | Text to Video | Variável | Privado |
+| Grok Imagine | `grok-imagine-text-to-video-private` | Text to Video | Variável | Privado |
+| Grok Imagine | `grok-imagine-image-to-video-private` | Image to Video | Variável | Privado |
+| Grok Imagine | `grok-imagine-video-to-video-private` | Text to Video | Variável | Privado |
+| Grok Imagine 1.5 | `grok-imagine-1-5-text-to-video-private` | Text to Video | Variável | Privado |
+| Grok Imagine 1.5 | `grok-imagine-1-5-image-to-video-private` | Image to Video | Variável | Privado |
+| Grok Imagine 1.5 R2V | `grok-imagine-1-5-reference-to-video-private` | Text to Video | Variável | Privado |
+| Grok Imagine R2V | `grok-imagine-reference-to-video-private` | Text to Video | Variável | Privado |
 | HappyHorse 1.0 | `happyhorse-1-0-text-to-video` | Text to Video | Variável | Anonimizado |
 | HappyHorse 1.0 | `happyhorse-1-0-image-to-video` | Image to Video | Variável | Anonimizado |
 | HappyHorse 1.0 Edit | `happyhorse-1-0-video-to-video` | Text to Video | Variável | Anonimizado |
@@ -363,6 +375,11 @@ O preço de vídeo varia por resolução e duração. Visite a [página de model
 | LTX Video 2.3 Fast | `ltx-2-v2-3-fast-text-to-video` | Text to Video | Variável | Anonimizado |
 | LTX Video 2.3 Full Quality | `ltx-2-v2-3-full-image-to-video` | Image to Video | Variável | Anonimizado |
 | LTX Video 2.3 Full Quality | `ltx-2-v2-3-full-text-to-video` | Text to Video | Variável | Anonimizado |
+| MiniMax H3 | `minimax-h3-text-to-video` | Text to Video | Variável | Anonimizado |
+| MiniMax H3 | `minimax-h3-image-to-video` | Image to Video | Variável | Anonimizado |
+| MiniMax H3 Enhanced (Beta) | `minimax-h3-enhanced-text-to-video` | Text to Video | Variável | Anonimizado |
+| MiniMax H3 R2V | `minimax-h3-reference-to-video` | Text to Video | Variável | Anonimizado |
+| MiniMax H3 R2V Enhanced (Beta) | `minimax-h3-enhanced-reference-to-video` | Text to Video | Variável | Anonimizado |
 | Ovi | `ovi-image-to-video` | Image to Video | Variável | Privado |
 | PixVerse C1 | `pixverse-c1-text-to-video` | Text to Video | Variável | Anonimizado |
 | PixVerse C1 | `pixverse-c1-image-to-video` | Image to Video | Variável | Anonimizado |
@@ -371,7 +388,6 @@ O preço de vídeo varia por resolução e duração. Visite a [página de model
 | PixVerse v5.6 | `pixverse-v5.6-text-to-video` | Text to Video | Variável | Anonimizado |
 | PixVerse v5.6 | `pixverse-v5.6-image-to-video` | Image to Video | Variável | Anonimizado |
 | PixVerse v5.6 Transition | `pixverse-v5.6-transition` | Text to Video | Variável | Anonimizado |
-| Runway Gen-4 Aleph | `runway-gen4-aleph` | Text to Video | Variável | Anonimizado |
 | Runway Gen-4 Turbo | `runway-gen4-turbo` | Text to Video | Variável | Anonimizado |
 | Runway Gen-4.5 | `runway-gen4-5` | Text to Video | Variável | Anonimizado |
 | Runway Gen-4.5 | `runway-gen4-5-text` | Text to Video | Variável | Anonimizado |
@@ -428,10 +444,10 @@ Essas cobranças se aplicam além dos preços padrão por token do modelo.
 
 <CardGroup cols={3}>
   <Card title="USD" icon="credit-card" href="https://venice.ai/settings/api">
-    Compre créditos de API com cartão de crédito. Os créditos nunca expiram.
+    Compre créditos Venice com cartão de crédito. Os créditos nunca expiram.
   </Card>
   <Card title="Cripto" icon="bitcoin" href="https://venice.ai/settings/api">
-    Compre créditos de API com criptomoeda. Mesmas tarifas do USD.
+    Compre créditos Venice com criptomoeda. Mesmas tarifas do USD.
   </Card>
   <Card title="Stake DIEM" icon="coins" href="/overview/vvv-diem">
     Cada Diem = $1/dia em créditos que se renovam diariamente.
@@ -440,6 +456,18 @@ Essas cobranças se aplicam além dos preços padrão por token do modelo.
 
 ### Usuários Pro
 
-Assinantes Pro recebem um crédito único de $10 na API ao fazer upgrade para Pro. Use-o para testar e construir pequenos apps.
+Assinantes Pro recebem um crédito único de $10 de Venice ao fazer upgrade para Pro. Use-o para testar e construir pequenos apps.
 
 Além desse crédito, o uso da API é cobrado pelas mesmas tarifas pay-per-use listadas acima — a assinatura Pro em si não inclui cotas adicionais de API, como imagens, caracteres ou tokens inclusos. Alguns modelos são restritos a contas Pro (`PRO_ONLY_MODEL`); chamá-los a partir de uma conta sem uma assinatura Pro ativa retorna `AUTHENTICATION_FAILED_INACTIVE_KEY`. Veja [Códigos de erro](/api-reference/error-codes).
+
+### Plano gratuito
+
+A API da Venice não tem um plano gratuito. Toda chamada de chat, imagem, áudio, vídeo e embedding é paga por meio de créditos, DIEM ou [x402/USDC](/guides/integrations/x402-venice-api). Os modelos de texto de menor custo começam em $0,05 por 1M de tokens de entrada, e os modelos de embedding começam em $0,01 por 1M de tokens.
+
+<Note>
+A cota gratuita diária de prompts em [venice.ai](https://venice.ai) é um recurso do app web para consumidores, não da API. As requisições à API sempre consomem do seu saldo carregado.
+</Note>
+
+### Usando chaves da Venice com outros provedores
+
+As chaves da API da Venice só funcionam contra `https://api.venice.ai/api/v1`. Elas não são intercambiáveis com chaves do OpenRouter, OpenAI, Anthropic ou outros provedores, e chaves desses provedores não autenticarão na Venice. Para usar os modelos da Venice, gere uma chave em [venice.ai/settings/api](https://venice.ai/settings/api) e aponte seu cliente para a URL base da Venice.

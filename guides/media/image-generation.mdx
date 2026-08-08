@@ -272,6 +272,24 @@ Other image models support `aspect_ratio` plus a `resolution` tier. For example,
 
 Use [Image Models](/models/image) to see which models support higher resolutions and how they are priced.
 
+### Adult content and safe mode
+
+`safe_mode` controls whether adult content in generation output is blurred. It defaults to `true`. Set it to `false` if your use case allows adult content and you want the raw output:
+
+```json
+{
+  "model": "lustify-v8",
+  "prompt": "…",
+  "safe_mode": false
+}
+```
+
+Some image models are specifically designed for adult / uncensored generation and pair well with `safe_mode: false`. Examples on the pricing page include `lustify-sdxl`, `lustify-v7`, and `lustify-v8`. See [Image Models](/models/image) and [Pricing](/overview/pricing) for the current list and per-model costs.
+
+For editing existing images, the default edit model `qwen-edit` blocks explicit sexual imagery. If you need uncensored editing, use `qwen-edit-uncensored` via [Image Editing](/guides/media/image-editing).
+
+When `safe_mode` is enabled and the model returns blurred or moderated output, inspect the `x-venice-is-blurred` and `x-venice-is-content-violation` response headers if you need to detect that programmatically.
+
 ### Style presets
 
 If the selected model supports it, `style_preset` lets you steer the output without rewriting your whole prompt. You can fetch valid preset names from [Image Styles](/api-reference/endpoint/image/styles):
@@ -303,6 +321,27 @@ If you're already using OpenAI image SDKs or existing DALL-E integrations, Venic
 ```
 
 Use the OpenAI-compatible route for faster migrations. Use `/image/generate` when you need Venice-specific options such as `cfg_scale`, `style_preset`, `variants`, or binary responses.
+
+### Controlling adult-content blur on `/images/generations`
+
+The OpenAI-compatible endpoint does not accept `safe_mode`. Sending it returns a `400` with `Unrecognized key(s) in object: 'safe_mode'`. Use the OpenAI-style `moderation` parameter instead:
+
+| Value | Behavior |
+|---|---|
+| `auto` (default) | Enables Safe Venice mode and blurs adult content |
+| `low` | Disables Safe Venice mode; returns unblurred output |
+
+```json
+{
+  "model": "lustify-v8",
+  "prompt": "…",
+  "size": "1024x1024",
+  "response_format": "b64_json",
+  "moderation": "low"
+}
+```
+
+`safe_mode` only works on the native `POST /image/generate` endpoint. `moderation` only works on the OpenAI-compatible `POST /images/generations` endpoint.
 
 ---
 

@@ -272,6 +272,24 @@ Outros modelos de imagem suportam `aspect_ratio` mais um tier `resolution`. Por 
 
 Use [Modelos de imagem](/models/image) para ver quais modelos suportam resoluções maiores e como são precificados.
 
+### Conteúdo adulto e safe mode
+
+`safe_mode` controla se o conteúdo adulto na saída da geração é borrado. O padrão é `true`. Defina como `false` se o seu caso de uso permitir conteúdo adulto e você quiser a saída sem alteração:
+
+```json
+{
+  "model": "lustify-v8",
+  "prompt": "…",
+  "safe_mode": false
+}
+```
+
+Alguns modelos de imagem são projetados especificamente para geração adulta / sem censura e combinam bem com `safe_mode: false`. Exemplos na página de preços incluem `lustify-sdxl`, `lustify-v7` e `lustify-v8`. Veja [Modelos de imagem](/models/image) e [Preços](/overview/pricing) para a lista atual e os custos por modelo.
+
+Para edição de imagens existentes, o modelo de edição padrão `qwen-edit` bloqueia imagens sexuais explícitas. Se você precisa de edição sem censura, use `qwen-edit-uncensored` via [Edição de imagem](/guides/media/image-editing).
+
+Quando `safe_mode` está habilitado e o modelo retorna saída borrada ou moderada, inspecione os cabeçalhos de resposta `x-venice-is-blurred` e `x-venice-is-content-violation` se precisar detectar isso programaticamente.
+
 ### Presets de estilo
 
 Se o modelo selecionado suportar, `style_preset` permite guiar a saída sem reescrever todo o prompt. Você pode buscar nomes de preset válidos em [Image Styles](/api-reference/endpoint/image/styles):
@@ -303,6 +321,27 @@ Se você já está usando SDKs de imagem da OpenAI ou integrações DALL-E exist
 ```
 
 Use a rota compatível com OpenAI para migrações mais rápidas. Use `/image/generate` quando precisar de opções específicas da Venice, como `cfg_scale`, `style_preset`, `variants` ou respostas binárias.
+
+### Controlando o embaçamento de conteúdo adulto em `/images/generations`
+
+O endpoint compatível com OpenAI não aceita `safe_mode`. Enviá-lo retorna `400` com `Unrecognized key(s) in object: 'safe_mode'`. Use o parâmetro `moderation` no estilo OpenAI:
+
+| Valor | Comportamento |
+|---|---|
+| `auto` (padrão) | Habilita o modo Safe Venice e embaça conteúdo adulto |
+| `low` | Desabilita o modo Safe Venice; retorna a saída sem embaçamento |
+
+```json
+{
+  "model": "lustify-v8",
+  "prompt": "…",
+  "size": "1024x1024",
+  "response_format": "b64_json",
+  "moderation": "low"
+}
+```
+
+`safe_mode` funciona apenas no endpoint nativo `POST /image/generate`. `moderation` funciona apenas no endpoint compatível com OpenAI `POST /images/generations`.
 
 ---
 
